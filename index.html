@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Travel</title>
+</head>
+<body id="bdy" class="relative bg-gray-200 font-workSans">
+    <main>
+        <header class="flex justify-between items-center p-4 bg-gray-800">
+            <svg id="menu" class="h-7 text-white cursor-pointer hover:text-yellow-500 md:hidden" onclick="abrirMenu()" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+            <span class="text-xl ml-4 md:ml-0 md:text-2xl lg:ml-14 text-white hover:text-yellow-500 font-sourceSans"><a href="index.html">TRAVEL</a></span>
+            
+            <nav class="hidden md:flex">
+                <ul class="list-none md:flex">
+                    <li><a class="my-0 mx-3 lg:mx-4 text-white hover:text-yellow-500 md:text-base" href="#imgInicial">Home</a></li>
+                    <li><a class="my-0 mx-3 lg:mx-4 text-white hover:text-yellow-500" href="#agendamento">Agendar</a></li>
+                    <li><a class="my-0 mx-3 lg:mx-4 text-white hover:text-yellow-500" href="#pacotes">Pacotes</a></li>
+                    <li><a class="my-0 mx-3 lg:mx-4 text-white hover:text-yellow-500" href="#servicos">Serviços</a></li>
+                    <li><a class="my-0 mx-3 lg:mx-4 text-white hover:text-yellow-500" href="#galeria">Galeria</a></li>
+                    <li><a class="my-0 mx-3 lg:mx-4 text-white hover:text-yellow-500" href="#avaliacoes">Avaliações</a></li>
+                    <li><a class="my-0 mx-3 lg:mx-4 text-white hover:text-yellow-500" href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="flex">
+                <svg class="h-7 md:h-8 text-white cursor-pointer hover:text-yellow-500" fill="currentColor" onclick="login()" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <svg class="ml-1 h-7 md:h-8 lg:mr-14 text-white cursor-pointer hover:text-yellow-500" id='svg2' fill="currentColor" onclick="clickPesquisa()" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+            </div>
+        </header>
+
+        <div id="navMenu" class="hidden absolute bg-gray-800 p-3 rounded-br-lg z-40">
+            <ul class="list-none">
+                <li class="mt-3"><a class="ml-2 text-xl text-white hover:text-yellow-500 md:text-base" href="#imgInicial">Home</a></li>
+                <li class="mt-2"><a class="ml-2 text-xl text-white hover:text-yellow-500" href="#agendamento">Agendar</a></li>
+                <li class="mt-2"><a class="ml-2 text-xl text-white hover:text-yellow-500" href="#pacotes">Pacotes</a></li>
+                <li class="mt-2"><a class="ml-2 text-xl text-white hover:text-yellow-500" href="#servicos">Serviços</a></li>
+                <li class="mt-2"><a class="ml-2 text-xl text-white hover:text-yellow-500" href="#galeria">Galeria</a></li>
+                <li class="mt-2"><a class="ml-2 text-xl text-white hover:text-yellow-500" href="#avaliacoes">Avaliações</a></li>
+                <li class="mt-2"><a class="ml-2 text-xl text-white hover:text-yellow-500" href="#contato">Contato</a></li>
+            </ul>
+        </div>
+
+        <div id="pesquisando" class="bg-gray-800 w-full absolute hidden p-3 z-30 lg:w-2/4 lg:rounded-bl-2xl lg:right-0">
+            <input class="p-2 w-11/12 outline-none text-sm ml-1 rounded-lg" type="text" placeholder="Pesquisar...">
+            <svg class="w-7 text-white ml-3 cursor-pointer hover:text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+        </div>
+
+        <div id="fundoLogin" class="hidden fixed w-full h-screen top-0 z-50 justify-center items-center bg-black bg-opacity-75">
+            <svg onclick="fechar()" class="absolute top-14 right-5 w-12 text-white cursor-pointer hover:text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <form id="formLogin" class="flex flex-col justify-center bg-gray-200 p-5 w-10/12 rounded-md md:w-6/12 lg:w-4/12">
+                <h2 class="text-center mb-5 font-bold text-gray-700 text-lg">LOGIN</h2>
+                <input type="email" class="mb-2 p-3 border-gray-600 border text-base outline-none font-workSans" name="e-mail" id="-email" placeholder="Digite seu e-mail..." required>
+                <input type="password" class="mb-2 p-3 border-gray-600 border text-base outline-none font-workSans" name="senha" id="senha" placeholder="Digite sua senha..." required>
+                <input type="submit" class="p-2 border-solid bg-yellow-500 border-yellow-500 border text-base font-workSans mb-2 text-white cursor-pointer hover:text-yellow-600 hover:bg-yellow-100" value="Fazer Login">
+                <div><input type="checkbox" class="mb-2" style="accent-color: #ffa40c;" name="lembrar" id="lembrar"> Manter Conectado</div>
+                <div class="mt-3">
+                    <span>Esqueceu a Senha?</span>
+                    <a href="#" class="text-yellow-500 hover:text-gray-600 underline">Clique Aqui</a>
+                </div>
+                <div>
+                    <span>Não Tem uma Conta?</span>
+                    <a href="#" class="text-yellow-500 hover:text-gray-600 underline">Cadastrar-Se</a>
+                </div>
+            </form>
+        </div>
+
+        <section id="imgInicial" class="p-1 w-full h-screen90 bg-cover bg-center flex flex-col justify-center items-center text-white" style="background-image: url(images/imgBackground/beach.jpg);" >
+            <h1 class="text-4xl md:text-5xl md:mb-2 font-bold text-center mb-3">VIAGENS INCRÍVEIS TE AGUARDAM</h1>
+            <p class="text-lg md:text-2xl text-center">Novos Lugares para Explorar = Novas Histórias Para Contar</p>
+            <button class="mt-6 p-2 text-lg md:text-xl border-2 border-solid border-yellow-500 rounded bg-yellow-500 text-white cursor-pointer hover:bg-yellow-500 hover:bg-opacity-20 hover:text-yellow-500">Conhecer</button>
+            <div class="mt-24 bg-black bg-opacity-80 flex justify-center items-center w-28 h-10 rounded-2xl">
+                <button id="img1" class="m-1 bg-yellow-500 w-4 h-4 rounded-full" onclick="clickImg(1)"></button>
+                <button id="img2" class="m-1 bg-white w-4 h-4 rounded-full" onclick="clickImg(2)"></button>
+                <button id="img3" class="m-1 bg-white w-4 h-4 rounded-full" onclick="clickImg(3)"></button>
+                <button id="img4" class="m-1 bg-white w-4 h-4 rounded-full" onclick="clickImg(4)"></button>
+            </div>
+        </section>
+
+        <section id="agendamento" class="w-full lg:h-screen flex flex-col">
+            <h1 class="text-center text-3xl md:text-5xl font-bold text-yellow-500 mt-5">AGENDAMENTO</h1>
+            <div id="conteudoAgendar" class="p-5 md:flex">
+                <img class="md:w-3/6" src="images/svg/undraw_Travelers_re_y25a.svg" alt="Agendamento">
+                <form id="formAgendar" class="flex flex-col bg-white rounded-lg p-5 shadow-md md:w-2/5">
+                    <label class="text-xl mb-2" for="para">Para Onde</label>
+                    <input type="text" class="p-2 mb-5 outline-none text-base border border-gray-600" name="para" id="para" placeholder="Procurar lugares..." required>
+                    <label class="text-xl mb-2" for="quantas">Quantas Pessoas</label>
+                    <input type="number" class="p-2 mb-5 outline-none text-base border border-gray-600" name="quantas" id="quantas" placeholder="Número de pessoas..." required>
+                    <label class="text-xl mb-2" for="ida">Ida</label>
+                    <input type="date" class="p-2 mb-5 outline-none text-base border border-gray-600" name="ida" id="ida" required>
+                    <label class="text-xl mb-2" for="volta">Volta</label>
+                    <input type="date" class="p-2 mb-5 outline-none text-base border border-gray-600" name="volta" id="volta" required>
+                    <input type="submit" class="w-2/5 border border-yellow-500 bg-yellow-500 text-white p-2 font-workSans cursor-pointer hover:bg-yellow-100 hover:text-yellow-500" value="Agendar">
+                </form>
+            </div>
+        </section>
+
+        <section id="pacotes">
+            <h1 class="text-center text-3xl md:text-5xl font-bold text-yellow-500 mt-5">PACOTES</h1>
+            <div class="grid grid-cols-1 gap-y-3 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2 lg:gap-y-4 p-5 place-items-center">
+                <div class="w-full md:w-11/12 bg-white rounded-lg shadow-md flex flex-col">
+                    <img class="w-full h-56 rounded-tl-lg rounded-tr-lg" src="images/imgPacotes/mumbai.jpg" alt="Mumbai">
+                    <div class="container p-2">
+                        <div class="h-2/4 flex-col flex">
+                            <div class="mt-2 ml-2 flex">
+                                <svg class="w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <h3 class="font-bold md:text-xl">Mumbai</h3>
+                            </div>
+                            <p class="mt-2 ml-3">Lorem ipsum dolor sit amet consectetur adipisicing elit, cum aspernatur eligendi.</p>
+                            <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                            </div>
+                            <span class="ml-3 text-xl">$90.00</span>
+                            <button class="mt-2 ml-2 p-2 text-base w-3/6 border border-yellow-500 bg-yellow-500 text-white font-workSans cursor-pointer hover:bg-yellow-100 hover:text-yellow-500">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-11/12 bg-white rounded-lg shadow-md flex flex-col">
+                    <img class="w-full h-56 rounded-tl-lg rounded-tr-lg" src="images/imgPacotes/hawaii.jpg" alt="Hawaii" >
+                    <div class="container p-2">
+                        <div class="h-2/4 flex-col flex">
+                            <div class="mt-2 ml-2 flex">
+                                <svg class="w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <h3 class="font-bold md:text-xl">Hawaii</h3>
+                            </div>
+                            <p class="mt-2 ml-3">Lorem ipsum dolor sit amet consectetur adipisicing elit, cum aspernatur eligendi.</p>
+                            <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                            </div>
+                            <span class="ml-3 text-xl">$90.00</span>
+                            <button class="mt-2 ml-2 p-2 text-base w-3/6 border border-yellow-500 bg-yellow-500 text-white font-workSans cursor-pointer hover:bg-yellow-100 hover:text-yellow-500">Comprar</button>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-11/12 bg-white rounded-lg shadow-md flex flex-col">
+                    <img class="w-full h-56 rounded-tl-lg rounded-tr-lg" src="images/imgPacotes/sydney.jpg" alt="Sydney">
+                    <div class="container p-2">
+                        <div class="h-2/4 flex-col flex">
+                            <div class="mt-2 ml-2 flex">
+                                <svg class="w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <h3 class="font-bold md:text-xl">Sydney</h3>
+                            </div>
+                            <p class="mt-2 ml-3">Lorem ipsum dolor sit amet consectetur adipisicing elit, cum aspernatur eligendi.</p>
+                            <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                            </div>
+                            <span class="ml-3 text-xl">$90.00</span>
+                            <button class="mt-2 ml-2 p-2 text-base w-3/6 border border-yellow-500 bg-yellow-500 text-white font-workSans cursor-pointer hover:bg-yellow-100 hover:text-yellow-500">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-11/12 bg-white rounded-lg shadow-md flex flex-col">
+                    <img class="w-full h-56 rounded-tl-lg rounded-tr-lg" src="images/imgPacotes/paris.jpg" alt="Paris">
+                    <div class="container p-2">
+                        <div class="h-2/4 flex-col flex">
+                            <div class="mt-2 ml-2 flex">
+                                <svg class="w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <h3 class="font-bold md:text-xl">Paris</h3>
+                            </div>
+                            <p class="mt-2 ml-3">Lorem ipsum dolor sit amet consectetur adipisicing elit, cum aspernatur eligendi.</p>
+                            <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                            </div>
+                            <span class="ml-3 text-xl">$90.00</span>
+                            <button class="mt-2 ml-2 p-2 text-base w-3/6 border border-yellow-500 bg-yellow-500 text-white font-workSans cursor-pointer hover:bg-yellow-100 hover:text-yellow-500">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-11/12 bg-white rounded-lg shadow-md flex flex-col">
+                    <img class="w-full h-56 rounded-tl-lg rounded-tr-lg" src="images/imgPacotes/tokyo.jpg" alt="Tokyo">
+                    <div class="container p-2">
+                        <div class="h-2/4 flex-col flex">
+                            <div class="mt-2 ml-2 flex">
+                                <svg class="w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <h3 class="font-bold md:text-xl">Tokyo</h3>
+                            </div>
+                            <p class="mt-2 ml-3">Lorem ipsum dolor sit amet consectetur adipisicing elit, cum aspernatur eligendi.</p>
+                            <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                            </div>
+                            <span class="ml-3 text-xl">$90.00</span>
+                            <button class="mt-2 ml-2 p-2 text-base w-3/6 border border-yellow-500 bg-yellow-500 text-white font-workSans cursor-pointer hover:bg-yellow-100 hover:text-yellow-500">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-11/12 bg-white rounded-lg shadow-md flex flex-col">
+                    <img class="w-full h-56 rounded-tl-lg rounded-tr-lg" src="images/imgPacotes/egypt.jpg" alt="Egito">
+                    <div class="container p-2">
+                        <div class="h-2/4 flex-col flex">
+                            <div class="mt-2 ml-2 flex">
+                                <svg class="w-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <h3 class="font-bold md:text-xl">Egito</h3>
+                            </div>
+                            <p class="mt-2 ml-3">Lorem ipsum dolor sit amet consectetur adipisicing elit, cum aspernatur eligendi.</p>
+                            <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                            </div>
+                            <span class="ml-3 text-xl">$90.00</span>
+                            <button class="mt-2 ml-2 p-2 text-base w-3/6 border border-yellow-500 bg-yellow-500 text-white font-workSans cursor-pointer hover:bg-yellow-100 hover:text-yellow-500">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicos" class="lg:h-screen md:p-5">
+            <h1 class="text-center text-3xl md:text-5xl font-bold text-yellow-500 mt-5 mb-4">SERVIÇOS</h1>
+            <div class="grid grid-cols-1 gap-y-5 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2 lg:gap-y-8 p-5 place-items-center">
+                <div class="w-full md:w-11/12 rounded-lg p-2 shadow-lg md:shadow-none flex flex-col items-center text-center md:hover:shadow-2xl md:hover:bg-gray-100">
+                    <svg class="w-20 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path></svg>
+                    <h2 class="mb-2 font-bold text-lg md:text-2xl">Hotéis Acessíveis</h2>
+                    <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolor incidunt quaerat id debitis autem aperiam ullam.</p>
+                </div>
+
+                <div class="w-full md:w-11/12 rounded-lg p-2 shadow-lg md:shadow-none flex flex-col items-center text-center md:hover:shadow-2xl md:hover:bg-gray-100">
+                    <svg class="w-20 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M4.258 6.884L9.97 16.977l5.618-9.83c-1.33-.105-2.712-.453-4.242-.992-.395-.14-.598-.171-.78-.148-.154.02-1.723.569-2.643.802-1.161.294-2.384.317-3.665.075zm-1.41-2.49c1.702.67 3.224.82 4.584.476.738-.187 2.478-.796 2.883-.847.529-.067 1.03.01 1.696.245 1.774.626 3.296.956 4.703.909l.887-1.552A18.559 18.559 0 0 0 9.966 2a18.56 18.56 0 0 0-7.569 1.596l.451.797zM.542 2.268A20.508 20.508 0 0 1 9.966 0c3.362 0 6.606.8 9.496 2.306a1 1 0 0 1 .406 1.383l-9.034 15.807a1 1 0 0 1-1.738-.004L.13 3.65a1 1 0 0 1 .412-1.38zM8 10a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm3 3a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path></svg>
+                    <h2 class="mb-2 font-bold text-lg md:text-2xl">Comidas e Bebidas</h2>
+                    <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolor incidunt quaerat id debitis autem aperiam ullam.</p>
+                </div>
+
+                <div class="w-full md:w-11/12 rounded-lg p-2 shadow-lg md:shadow-none flex flex-col items-center text-center md:hover:shadow-2xl md:hover:bg-gray-100">
+                    <svg class="w-20 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd"></path></svg>
+                    <h2 class="mb-2 font-bold text-lg md:text-2xl">Guia de Segurança</h2>
+                    <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolor incidunt quaerat id debitis autem aperiam ullam.</p>
+                </div>
+
+                <div class="w-full md:w-11/12 rounded-lg p-2 shadow-lg md:shadow-none flex flex-col items-center text-center md:hover:shadow-2xl md:hover:bg-gray-100">
+                    <svg class="w-20 text-yellow-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"></path></svg>
+                    <h2 class="mb-2 font-bold text-lg md:text-2xl">Ao Redor do Mundo</h2>
+                    <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolor incidunt quaerat id debitis autem aperiam ullam.</p>
+                </div>
+
+                <div class="w-full md:w-11/12 rounded-lg p-2 shadow-lg md:shadow-none flex flex-col items-center text-center md:hover:shadow-2xl md:hover:bg-gray-100">
+                    <svg class="w-20 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 24 24" width="24" fill="currentColor"><path d="M12.685 13.285l-3.44 3.06.528 2.423-2.488 2.488-2.507-3.921-3.921-2.507 2.488-2.488L5.9 13l2.927-3.573-6.171-4.114 2.828-2.829L13.2 5.057l3.793-3.793c1.171-1.172 2.985-1.258 4.05-.193s.978 2.878-.193 4.05l-3.793 3.793 2.571 7.713-2.828 2.829-4.114-6.171z"></path></svg>
+                    <h2 class="mb-2 font-bold text-lg md:text-2xl">Viagem Mais Rápida</h2>
+                    <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolor incidunt quaerat id debitis autem aperiam ullam.</p>
+                </div>
+
+                <div class="w-full md:w-11/12 rounded-lg p-2 shadow-lg md:shadow-none flex flex-col items-center text-center md:hover:shadow-2xl md:hover:bg-gray-100">
+                    <svg class="w-20 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M2 3v4h12.98l2.853-1.714a.333.333 0 0 0 0-.572L14.98 3H2zm6-2a1 1 0 1 1 2 0h4.98a2 2 0 0 1 1.03.286L18.863 3a2.333 2.333 0 0 1 0 4L16.01 8.714A2 2 0 0 1 14.98 9H10v1h7.995a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H10v1a1 1 0 0 1-2 0v-1H5.015a2 2 0 0 1-1.03-.286L1.132 16a2.333 2.333 0 0 1 0-4l2.853-1.714A2 2 0 0 1 5.015 10H8V9H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h6zm9.995 11H5.015l-2.853 1.714a.333.333 0 0 0 0 .572L5.015 16h12.98v-4z"></path></svg>
+                    <h2 class="mb-2 font-bold text-lg md:text-2xl">Aventuras</h2>
+                    <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolor incidunt quaerat id debitis autem aperiam ullam.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" class="text-center">
+            <h1 class="text-center text-3xl md:text-5xl font-bold text-yellow-500 mt-5">GALERIA</h1>
+            <div class="grid grid-cols-1 gap-y-5 md:grid-cols-3 md:grid-rows-3 md:gap-5 p-5 place-items-center">
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/mountains.jpg" alt="Montanha"></div>
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/pelicans.jpg" alt="Pelicanos"></div>
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/waterfall.jpg" alt="Cachoeira"></div>
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/switzerland.jpg" alt="Switzerland"></div>
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/paragliding.jpg" alt="Paraquedas"></div>
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/woman.jpg" alt="Girassol"></div>
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/kolochava.jpg" alt="Fusca"></div>
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/mountain-range.jpg" alt="Montanhas"></div>
+                <div><img class="w-full border-8 border-white shadow-lg" src="images/imgGaleria/beach2.jpg" alt="Praia"></div>
+            </div>
+            <button class="mt-2 mb-6 text-base p-2 w-2/6 border border-yellow-500 bg-yellow-500 text-white font-workSans cursor-pointer hover:bg-yellow-100 hover:text-yellow-500">VER MAIS</button>
+        </section>
+
+        <section id="avaliacoes">
+            <h1 class="text-center text-3xl md:text-5xl font-bold text-yellow-500 mt-5 mb-5">AVALIAÇÕES</h1>
+            <div class="grid grid-cols-1 gap-y-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-3 p-5 place-items-center">
+                <div class="flex flex-col justify-center items-center p-2 text-center rounded-md bg-white shadow-md w-11/12">
+                    <img class="w-2/6 rounded-full" src="images/imgAvaliacoes/person.png" alt="Pessoa">
+                    <h3 class="mt-1 mb-2 font-bold">Nome Pessoa</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus pariatur delectus culpa nostrum aspernatur, libero necessitatibus nisi qui eveniet aperiam assumenda asperiores recusandae doloribus eligendi. Error ipsam dolores vitae excepturi.</p>
+                    <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center items-center p-2 text-center rounded-md bg-white shadow-md w-11/12">
+                    <img class="w-2/6 rounded-full" src="images/imgAvaliacoes/person.png" alt="Pessoa">
+                    <h3 class="mt-1 mb-2 font-bold">Nome Pessoa</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus pariatur delectus culpa nostrum aspernatur, libero necessitatibus nisi qui eveniet aperiam assumenda asperiores recusandae doloribus eligendi. Error ipsam dolores vitae excepturi.</p>
+                    <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center items-center p-2 text-center rounded-md bg-white shadow-md w-11/12">
+                    <img class="w-2/6 rounded-full" src="images/imgAvaliacoes/person.png" alt="Pessoa">
+                    <h3 class="mt-1 mb-2 font-bold">Nome Pessoa</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus pariatur delectus culpa nostrum aspernatur, libero necessitatibus nisi qui eveniet aperiam assumenda asperiores recusandae doloribus eligendi. Error ipsam dolores vitae excepturi.</p>
+                    <div class="flex mt-4 mb-1 ml-2 text-yellow-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"><path d="M10 16.207l-6.173 3.246 1.179-6.874L.01 7.71l6.902-1.003L10 .453l3.087 6.254 6.902 1.003-4.995 4.869 1.18 6.874z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -2.5 24 24" width="24" fill="currentColor"><polygon points="9.989 0 10 .024 10 15.76 9.989 15.754 3.815 19 4.994 12.126 0 7.257 6.902 6.254"></polygon></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="w-full md:h-screen flex flex-col justify-center items-center">
+            <h1 class="text-center text-3xl md:text-5xl font-bold text-yellow-500 mt-5 mb-7">CONTATO</h1>
+            <div class="p-5 md:flex">
+                <img class="md:w-3/6" src="images/svg/undraw_contact_us_15o2.svg" alt="">
+                <form class="md:w-6/12 flex flex-col bg-white rounded-lg p-5 shadow-md">
+                    <div class="md:flex">
+                        <input type="text" class="w-full md:w-2/4 mr-2 mb-2 p-3 outline-none text-base bg-gray-200" name="nome" id="nome" placeholder="Nome..." required>
+                        <input type="email" class="w-full md:w-2/4 mr-2 mb-2 p-3 outline-none text-base bg-gray-200" name="e-mail" id="e-mail" placeholder="E-mail..." required>
+                    </div>
+                    <div class="md:flex">
+                        <input type="number" class="w-full md:w-2/4 mr-2 mb-2 p-3 outline-none text-base bg-gray-200" name="numero" id="numero" placeholder="Número..." required>
+                        <input type="text" class="w-full md:w-2/4 mr-2 mb-2 p-3 outline-none text-base bg-gray-200" name="assunto" id="assunto" placeholder="Assunto..." required>
+                    </div>
+                    <textarea class="mt-2 md:mt-3 outline-none bg-gray-200" name="mensagem" id="mensagem" cols="30" rows="5" placeholder="Mensagem..." required></textarea>
+                    <input type="submit" class="w-4/12 border border-yellow-500 bg-yellow-500 text-white font-workSans p-2 mt-5 cursor-pointer hover:bg-yellow-100 hover:text-yellow-500" value="Enviar">
+                </form>
+            </div>
+        </section>
+
+        <footer class="flex flex-col items-center justify-center bg-gray-800 p-10 text-white">
+            <div class="container md:flex">
+                <div class="w-full mt-3 md:w-6/12">
+                    <h2 class="font-bold text-lg underline">Sobre</h2>
+                    <p class="text-gray-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis exercitationem officiis aut labore tempora accusantium accusamus esse eligendi quam ex saepe optio assumenda culpa quis, odit minus et architecto nemo.</p>
+                </div>
+                <div class="flex flex-col w-full mt-3 md:w-3/12 md:ml-5">
+                    <h2 class="font-bold text-lg underline">Links</h2>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#imgInicial">Home</a>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#agendamento">Agendar</a>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#pacotes">Pacotes</a>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#servicos">Serviços</a>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#galeria">Galeria</a>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#avaliacoes">Avaliações</a>
+                    <a class="mb-1 md:mb-10 text-gray-300 hover:underline hover:text-yellow-500" href="#contato">Contato</a>
+                </div>
+                <div class="flex flex-col w-full mt-3 md:w-3/12">
+                    <h2 class="font-bold text-lg underline">Siga-nos</h2>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#">Facebook</a>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#">Instagram</a>
+                    <a class="mb-1 text-gray-300 hover:underline hover:text-yellow-500" href="#">Twitter</a>
+                    <a class="mb-10 text-gray-300 hover:underline hover:text-yellow-500" href="#">Linkedin</a>
+                </div>
+            </div>
+            <div>
+                <span class="text-2xl font-sourceSans cursor-pointer hover:text-yellow-500">&copy;TRAVEL</span>
+            </div>
+        </footer>
+    </main>
+<script src="script.js"></script>
+</body>
+</html>
